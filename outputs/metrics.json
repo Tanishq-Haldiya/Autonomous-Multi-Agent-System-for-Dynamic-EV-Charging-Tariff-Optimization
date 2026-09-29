@@ -1,0 +1,270 @@
+{
+  "data": {
+    "districts": 247,
+    "piles": 18061,
+    "five_min_intervals": 8640,
+    "hours": 720,
+    "five_min_records": 2134080,
+    "hourly_records": 177840,
+    "period": "2022-06-19 to 2022-07-18",
+    "missing_values": {
+      "occupancy": 0,
+      "duration": 0,
+      "volume": 0,
+      "price": 0
+    },
+    "occupancy_above_capacity_5min_cells": 159,
+    "mean_occupancy_rate": 0.2802,
+    "mean_charging_utilization": 0.2257,
+    "share_hours_above_80pct": 0.0092,
+    "share_hours_below_30pct": 0.6115
+  },
+  "acn": {
+    "raw_sessions": 14999,
+    "clean_sessions": 14947,
+    "sites": {
+      "2.0": 14947
+    },
+    "median_connected_h": 4.74,
+    "median_charging_h": 2.24,
+    "mean_session_utilization": 0.693,
+    "share_of_plugged_time_idle": 0.437,
+    "mean_kwh_per_session": 9.0,
+    "mean_revenue_per_session_rs": 134.94,
+    "weekend_share_of_sessions": 0.179,
+    "peak_arrival_hour": 8
+  },
+  "periods": {
+    "peak": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6
+    ],
+    "shoulder": [
+      4,
+      7,
+      8,
+      9,
+      12,
+      13,
+      14,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "off-peak": [
+      10,
+      11,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  "district_status_counts": {
+    "underutilized (mean < 30%)": 152,
+    "balanced": 89,
+    "overloaded (>=10% of hours above 80%)": 6
+  },
+  "split": {
+    "train_rows": 71136,
+    "valid_rows": 23712,
+    "test_rows": 41496,
+    "train_period": "2022-06-26 to 2022-07-07",
+    "valid_period": "2022-07-08 to 2022-07-11",
+    "test_period": "2022-07-12 to 2022-07-18"
+  },
+  "demand_agent": {
+    "selected_model": "LightGBM",
+    "selected_on": "validation RMSE (Jul 08-11); test untouched",
+    "best_params": {
+      "LightGBM": {
+        "n_estimators": 888,
+        "learning_rate": 0.02960894457801019,
+        "num_leaves": 96,
+        "min_child_samples": 24,
+        "subsample": 0.803174133263344,
+        "colsample_bytree": 0.545183310140586,
+        "reg_lambda": 0.017305896016880668
+      },
+      "XGBoost": {
+        "n_estimators": 914,
+        "learning_rate": 0.03314262382875345,
+        "max_depth": 8,
+        "min_child_weight": 7,
+        "subsample": 0.7936264816929675,
+        "colsample_bytree": 0.6715078263055352
+      },
+      "RandomForest": {
+        "n_estimators": 106,
+        "max_depth": 23,
+        "min_samples_leaf": 6,
+        "max_features": 0.3
+      }
+    },
+    "test_metrics_occupancy": {
+      "RMSE": 0.0374,
+      "MAE": 0.022,
+      "R2": 0.9546
+    },
+    "test_metrics_by_period": {
+      "off-peak": {
+        "RMSE": 0.0388,
+        "MAE": 0.0242,
+        "R2": 0.9285
+      },
+      "peak": {
+        "RMSE": 0.0291,
+        "MAE": 0.015,
+        "R2": 0.9782
+      },
+      "shoulder": {
+        "RMSE": 0.0402,
+        "MAE": 0.0244,
+        "R2": 0.9439
+      },
+      "actual_occ_above_60pct": {
+        "RMSE": 0.0688,
+        "MAE": 0.0409,
+        "R2": 0.4056,
+        "n": 2733
+      }
+    },
+    "pricing_band_accuracy": 0.9489,
+    "energy_kwh_test_metrics": {
+      "RMSE": 188.1082,
+      "MAE": 61.2255,
+      "R2": 0.9784
+    },
+    "congestion_classifier": {
+      "test_positive_rate": 0.0089,
+      "ROC_AUC": 0.997,
+      "PR_AUC": 0.8337,
+      "Brier": 0.00315
+    },
+    "top_features": [
+      "occ_diff1",
+      "hour",
+      "occ_lag168",
+      "energy_lag1",
+      "occ_lag24",
+      "occ_lag1",
+      "occ_lag3",
+      "occ_lag2"
+    ]
+  },
+  "elasticity_estimates": {
+    "occupancy ~ price | district FE + CBD x hour-of-week FE": {
+      "elasticity": -0.197,
+      "cluster_se": 0.097,
+      "ci95": [
+        -0.388,
+        -0.007
+      ]
+    },
+    "occupancy ~ price | district FE + hour-of-week FE": {
+      "elasticity": -0.264,
+      "cluster_se": 0.096,
+      "ci95": [
+        -0.453,
+        -0.075
+      ]
+    },
+    "energy ~ price | district FE + CBD x hour-of-week FE": {
+      "elasticity": -0.289,
+      "cluster_se": 0.139,
+      "ci95": [
+        -0.561,
+        -0.017
+      ]
+    }
+  },
+  "elasticity_prior_used": -0.197,
+  "tariff_agent": {
+    "rule_eps_-0.5": {
+      "revenue_fixed_rs": 303056985,
+      "revenue_dynamic_rs": 293960443,
+      "revenue_gain_pct": -3.0,
+      "mean_occupancy_before": 0.2907,
+      "mean_occupancy_after": 0.3099,
+      "charging_util_before": 0.2395,
+      "charging_util_after": 0.2557,
+      "peak_hour_occupancy_before": 0.879,
+      "peak_hour_occupancy_after": 0.7695,
+      "congested_district_hours_before": 370,
+      "congested_district_hours_after": 173,
+      "offpeak_uplift_pile_hours": 59119.8,
+      "offpeak_uplift_pct": 18.54,
+      "mean_wait_before": "4.349e-03",
+      "mean_wait_after": "1.024e-03",
+      "pricing_efficiency_rs_per_kwh": 14.027,
+      "response_in_surge_hours_pct": -18.35,
+      "response_in_discount_hours_pct": 19.52,
+      "share_hours_surged": 0.0068,
+      "share_hours_discounted": 0.5903,
+      "wait_reduction_pct": 76.44
+    },
+    "optimised_(1.5, 0.95)_eps_-0.5": {
+      "revenue_fixed_rs": 303056985,
+      "revenue_dynamic_rs": 302602502,
+      "revenue_gain_pct": -0.15,
+      "mean_occupancy_before": 0.2907,
+      "mean_occupancy_after": 0.2923,
+      "charging_util_before": 0.2395,
+      "charging_util_after": 0.2409,
+      "peak_hour_occupancy_before": 0.879,
+      "peak_hour_occupancy_after": 0.769,
+      "congested_district_hours_before": 370,
+      "congested_district_hours_after": 172,
+      "offpeak_uplift_pile_hours": 7866.9,
+      "offpeak_uplift_pct": 2.47,
+      "mean_wait_before": "4.349e-03",
+      "mean_wait_after": "1.032e-03",
+      "pricing_efficiency_rs_per_kwh": 14.943,
+      "response_in_surge_hours_pct": -18.35,
+      "response_in_discount_hours_pct": 2.6,
+      "share_hours_surged": 0.0068,
+      "share_hours_discounted": 0.5903,
+      "wait_reduction_pct": 76.27
+    },
+    "optimised_multipliers": [
+      1.5,
+      0.95
+    ]
+  },
+  "learning_agent": {
+    "-0.5": {
+      "final_belief": -0.513,
+      "final_naive_estimate": -0.518,
+      "policy_day1": [
+        1.5,
+        0.95
+      ],
+      "policy_day7": [
+        1.5,
+        0.95
+      ],
+      "mean_regret_rs_days1_2": -12763.5,
+      "mean_regret_rs_days6_7": 16079.5
+    },
+    "-1.2": {
+      "final_belief": -1.208,
+      "final_naive_estimate": -1.169,
+      "policy_day1": [
+        1.5,
+        0.95
+      ],
+      "policy_day7": [
+        1.1,
+        0.7
+      ],
+      "mean_regret_rs_days1_2": 300083.5,
+      "mean_regret_rs_days6_7": -11160.5
+    }
+  }
+}

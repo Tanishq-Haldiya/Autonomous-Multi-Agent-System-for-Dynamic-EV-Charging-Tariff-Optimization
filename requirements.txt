@@ -1,0 +1,8 @@
+pandas>=2.2
+numpy>=2.0
+scikit-learn>=1.5
+lightgbm>=4.6
+xgboost>=3.0
+optuna>=4.0
+matplotlib>=3.9
+openpyxl>=3.1

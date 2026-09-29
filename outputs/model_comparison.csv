@@ -1,0 +1,7 @@
+model,valid_RMSE,RMSE,MAE,R2
+Baseline: persistence (last hour),0.05159292589405555,0.0555,0.0294,0.9
+Baseline: same hour yesterday,0.10248249190531432,0.0962,0.0638,0.6991
+Baseline: district x hour mean,,0.0887,0.0621,0.7444
+LightGBM (Optuna-tuned),0.0352,0.0374,0.022,0.9546
+XGBoost (Optuna-tuned),0.0356,0.0378,0.022,0.9535
+RandomForest (Optuna-tuned),0.0379,0.0398,0.0235,0.9484
