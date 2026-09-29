@@ -1,7 +1,5 @@
 # Autonomous Multi-Agent System for Dynamic EV Charging Tariff Optimization
 
-Open Project 2026, Society of Business (Team Knox).
-
 Flat ₹/kWh tariffs leave EV charging stations congested at peak and idle off-peak. This project builds a three-agent pricing system on 2.1M five-minute records from 247 Shenzhen districts (UrbanEV), plus 15k Caltech charging sessions (ACN-Data).
 
 | Agent | Role |
